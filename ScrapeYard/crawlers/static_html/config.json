@@ -1,0 +1,24 @@
+// Example for Quotes.toscrape.com
+{
+  "name": "quotes_scraper",
+  "domain": "quotes.toscrape.com",
+  "start_urls": ["https://quotes.toscrape.com/"],
+  "max_pages": 5,
+  "follow_allow": ["/page/"],
+  "follow_deny": [],
+  "paginate": {
+    "type": "next",
+    "next_selector": "li.next a"
+  },
+  "extract": {
+    "list_selector": ".quote",
+    "item_fields": {
+      "quote_text": ".text",
+      "author_name": ".author"
+    }
+  },
+  "output": {
+    "format": "jsonl",
+    "path": "./output_quotes"
+  }
+}
