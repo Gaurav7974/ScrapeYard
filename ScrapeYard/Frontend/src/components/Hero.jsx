@@ -7,6 +7,8 @@ import {
   Globe,
   ExternalLink,
   Sparkles,
+  Search,
+  Github,
 } from "lucide-react";
 
 // --- Code Preview ---
@@ -75,6 +77,60 @@ const ScraperCard = ({ title, stars, language, description }) => {
   );
 };
 
+// --- Search Box Component ---
+const SearchBox = () => {
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Navigate to explorer with search query
+    window.location.href = `/explore?q=${encodeURIComponent(query)}`;
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-xl mx-auto mt-6"
+      role="search"
+      aria-label="Search scrapers"
+    >
+      <div className="flex items-stretch gap-2 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-1 shadow-sm">
+        <div className="flex items-center pl-3">
+          <Search className="w-4 h-4 text-gray-400" />
+        </div>
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search domains, stacks, or use cases..."
+          className="flex-1 px-3 py-3 rounded-lg outline-none bg-transparent placeholder-gray-500"
+          aria-label="Search scrapers by keyword"
+        />
+        <button
+          type="submit"
+          className="px-5 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:shadow-md transition-all"
+        >
+          Search
+        </button>
+      </div>
+      {/* Search suggestions */}
+      <div className="flex flex-wrap gap-2 mt-3 justify-center">
+        <span className="text-xs text-gray-500">Try:</span>
+        {["ecommerce", "news", "python", "jobs"].map((term) => (
+          <button
+            key={term}
+            type="button"
+            onClick={() => setQuery(term)}
+            className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+          >
+            {term}
+          </button>
+        ))}
+      </div>
+    </form>
+  );
+};
+
 // --- Main Hero Section ---
 export default function ScrapeYardHero() {
   return (
@@ -123,14 +179,35 @@ export default function ScrapeYardHero() {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:shadow-lg transition">
+            <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-xl font-semibold text-lg hover:shadow-lg transition group">
               Open Explorer
-              <ChevronRight className="w-5 h-5 inline-block ml-2" />
+              <ChevronRight className="w-5 h-5 inline-block ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
             <button className="bg-white border-2 border-gray-200 text-gray-700 px-8 py-3 rounded-xl font-semibold text-lg hover:shadow-md transition">
               <Code2 className="w-5 h-5 inline-block mr-2" />
               How it works
             </button>
+          </div>
+
+          {/* Search Box */}
+          <SearchBox />
+
+          {/* GitHub & Open Source signals */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
+            <a
+              href="https://github.com/Gaurav7974/ScrapeYard"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-white hover:shadow-sm transition-all text-gray-700 hover:text-gray-900"
+            >
+              <Github className="w-4 h-4" />
+              <span>View on GitHub</span>
+              <div className="flex items-center gap-1 ml-2 text-xs text-gray-500">
+                <Star className="w-3 h-3" />
+                <span>Star</span>
+              </div>
+            </a>
+            <span className="text-gray-500">MIT Licensed • Community contributions welcome</span>
           </div>
 
           {/* Trust note */}
@@ -144,7 +221,7 @@ export default function ScrapeYardHero() {
           </div>
         </div>
 
-        {/* Right column */}
+        {/* Bottom section - Code Preview */}
         <div className="mt-16 bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/40 shadow-lg">
           {/* Header */}
           <div className="flex items-center justify-center gap-2 mb-6">
@@ -182,7 +259,7 @@ export default function ScrapeYardHero() {
           {/* Footer note */}
           <div className="text-center pt-4 mt-6 border-t border-gray-200">
             <p className="text-xs text-gray-500">
-               Featured scrapers include Scrapy, Crawlee, Colly
+              ✨ Featured scrapers include Scrapy, Crawlee, Colly
             </p>
           </div>
         </div>
