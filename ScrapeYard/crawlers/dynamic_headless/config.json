@@ -1,0 +1,21 @@
+{
+  "name": "dynamic_quotes",
+  "domain": "quotes.toscrape.com",
+  "start_urls": ["https://quotes.toscrape.com/scroll"],
+  "max_pages": 3,
+  "paginate": {
+    "type": "infinite",
+    "scroll_limit": 5
+  },
+  "extract": {
+    "list_selector": ".quote",
+    "item_fields": {
+      "quote_text": ".text",
+      "author_name": ".author"
+    }
+  },
+  "output": {
+    "format": "jsonl",
+    "path": "./output_dynamic"
+  }
+}
