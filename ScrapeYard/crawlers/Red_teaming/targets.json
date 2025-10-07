@@ -1,0 +1,15 @@
+{
+  "sites": [
+    {
+      "name": "example",
+      "base_url": "https://example.com/"
+    }
+  ],
+  "global": {
+    "output_dir": "output",
+    "max_pages_per_site": 500,
+    "delay": 0.6,
+    "use_selenium": true,
+    "bruteforce_paths": true
+  }
+}

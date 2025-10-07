@@ -1,0 +1,27 @@
+//this are main section crawler will explore for vulnerabilities//
+admin
+login
+dashboard
+members
+backup
+backup.zip
+config
+config.php
+.env
+debug.php
+phpinfo.php
+test
+dev
+staging
+api
+api/v1
+wp-admin
+wp-config.php
+uploads
+files
+database.sql
+sql
+logs
+.htaccess
+robots.txt
+sitemap.xml
